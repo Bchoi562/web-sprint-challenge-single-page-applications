@@ -1,5 +1,4 @@
 import React from 'react';
-import QuantityPicker from './QuantityPicker';
 
 export default function Form(props){
     const {values, submit, change, disabled, errors} = props;
@@ -21,7 +20,6 @@ export default function Form(props){
                 <h2>Build Your Own Pizza</h2>
                 <div className='errors'>
                     <div>{errors.Size}</div>
-                    <div>{errors.Sauce}</div>
                     <div>{errors.Toppings}</div>
                     <div>{errors.Substitute}</div>
                     <div>{errors.SpecialInstructions}</div>
@@ -41,11 +39,15 @@ export default function Form(props){
                 </label>
                 <label>
                     Choice of Size
-                        <select>
-                            <option value = '1'>Small</option>
-                            <option value = '2'>Medium</option>
-                            <option value = '3'>Large</option>
-                            <option value = '4'>Extra Large</option>
+                        <select
+                            name='Size' 
+                            value={values.Size}
+                            onChange={onChange}
+                        >
+                            <option value = 'Small'>Small</option>
+                            <option value = 'Medium'>Medium</option>
+                            <option value = 'Large'>Large</option>
+                            <option value = 'Extra Large'>Extra Large</option>
                         </select>
                 </label>
 
@@ -55,9 +57,8 @@ export default function Form(props){
                             Original Red
                                 <input
                                     type='checkbox'
-                                    name='Sauce'
-                                    value='Sauce'
-                                    checked={values.Sauce}
+                                    name='OriginalRed'
+                                    value={values.OriginalRed}
                                     onChange={onChange}
                                 />
                         </div>
@@ -65,9 +66,8 @@ export default function Form(props){
                             Garlic Ranch
                                 <input
                                     type='checkbox'
-                                    name='Sauce'
-                                    value='Sauce'
-                                    checked={values.Sauce}
+                                    name='GarlicRanch'
+                                    value={values.GarlicRanch}
                                     onChange={onChange}
                                 />
                         </div>
@@ -75,9 +75,8 @@ export default function Form(props){
                             BBQ Sauce
                                 <input
                                     type='checkbox'
-                                    name='Sauce'
-                                    value='Sauce'
-                                    checked={values.Sauce}
+                                    name='BBQ'
+                                    value={values.BBQ}
                                     onChange={onChange}
                                 />
                         </div>
@@ -85,9 +84,8 @@ export default function Form(props){
                             Spinach Alfredo
                                 <input
                                     type='checkbox'
-                                    name='Sauce'
-                                    value='Sauce'
-                                    checked={values.Sauce}
+                                    name='SpinachAlfredo'
+                                    value={values.SpinachAlfredo}
                                     onChange={onChange}
                                 />
                         </div>
@@ -100,18 +98,16 @@ export default function Form(props){
                             Pepperoni
                                 <input
                                     type='checkbox'
-                                    name='Toppings'
-                                    value='Toppings'
-                                    checked={values.Toppings}
+                                    name='Pepperoni'
+                                    value={values.Pepperoni}
                                     onChange={onChange}
                                 />
                    
                             Sausage
                                 <input
                                     type='checkbox'
-                                    name='Toppings'
-                                    value='Toppings'
-                                    checked={values.Toppings}
+                                    name='Sausage'
+                                    value={values.Sausage}
                                     onChange={onChange}
                                 />
                     </div>
@@ -119,28 +115,25 @@ export default function Form(props){
                             Canadian Bacon
                                 <input
                                     type='checkbox'
-                                    name='Toppings'
-                                    value='Toppings'
-                                    checked={values.Toppings}
+                                    name='CanadianBacon'
+                                    value={values.CanadianBacon}
                                     onChange={onChange}
                                 />
                     
                             Spicy Italian Sausage
                                 <input
                                     type='checkbox'
-                                    name='Toppings'
-                                    value='Toppings'
-                                    checked={values.Toppings}
+                                    name='SpicyItalianSausage'
+                                    value={values.SpicyItalianSausage}
                                     onChange={onChange}
                                 />
                     </div>
-                    <div>
+                    {/* <div>
                             Grilled Chicken
                                 <input
                                     type='checkbox'
                                     name='Toppings'
                                     value='Toppings'
-                                    checked={values.Toppings}
                                     onChange={onChange}
                                 />
                     
@@ -149,7 +142,6 @@ export default function Form(props){
                                     type='checkbox'
                                     name='Toppings'
                                     value='Toppings'
-                                    checked={values.Toppings}
                                     onChange={onChange}
                                 />
                     </div>
@@ -159,7 +151,6 @@ export default function Form(props){
                                     type='checkbox'
                                     name='Toppings'
                                     value='Toppings'
-                                    checked={values.Toppings}
                                     onChange={onChange}
                                 />
                     
@@ -168,7 +159,6 @@ export default function Form(props){
                                     type='checkbox'
                                     name='Toppings'
                                     value='Toppings'
-                                    checked={values.Toppings}
                                     onChange={onChange}
                                 />
                     </div>
@@ -178,7 +168,6 @@ export default function Form(props){
                                     type='checkbox'
                                     name='Toppings'
                                     value='Toppings'
-                                    checked={values.Toppings}
                                     onChange={onChange}
                                 />
                     
@@ -187,7 +176,6 @@ export default function Form(props){
                                     type='checkbox'
                                     name='Toppings'
                                     value='Toppings'
-                                    checked={values.Toppings}
                                     onChange={onChange}
                                 />
                     </div>
@@ -197,7 +185,6 @@ export default function Form(props){
                                     type='checkbox'
                                     name='Toppings'
                                     value='Toppings'
-                                    checked={values.Toppings}
                                     onChange={onChange}
                                 />
                     
@@ -206,7 +193,6 @@ export default function Form(props){
                                     type='checkbox'
                                     name='Toppings'
                                     value='Toppings'
-                                    checked={values.Toppings}
                                     onChange={onChange}
                                 />
                     </div>
@@ -216,7 +202,6 @@ export default function Form(props){
                                     type='checkbox'
                                     name='Toppings'
                                     value='Toppings'
-                                    checked={values.Toppings}
                                     onChange={onChange}
                                 />
                     
@@ -225,10 +210,9 @@ export default function Form(props){
                                     type='checkbox'
                                     name='Toppings'
                                     value='Toppings'
-                                    checked={values.Toppings}
                                     onChange={onChange}
                                 />
-                    </div>
+                    </div> */}
                 </label>
 
                 <label>
@@ -256,8 +240,8 @@ export default function Form(props){
                 </label>
 
                 <label>
-                    <QuantityPicker min={0} max={4} />
-                    <button disabled={disabled}>Add to your order</button>
+                  
+                    <button name="submitbutton"disabled={disabled}>Add to your order</button>
                 </label>
 
                 

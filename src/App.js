@@ -6,26 +6,29 @@ import axios from 'axios';
 import schema from './Schema';
 import Form from './Form';
 import * as yup from 'yup';
+import User from './Order';
+
 
 
 const initialFormValues = {
   Name:"",
   Size:"",
-  Sauce:false,
-  Toppings:false,
+  OriginalRed:false,
+  GarlicRanch:false,
+  BBQ:false,
+  SpinachAlfredo:false,
+  Pepperoni:false,
+  Sausage:false,
+  CanadianBacon:false,
+  SpicyItalianSausage:false,
   Substitute:false,
   SpecialInstructions:"",
   Quantity:""
 }
+// const Sauce = []
 
 const initialFormErrors = {
-  Name:"",
-  Size:"",
-  Sauce:"",
-  Toppings:"",
-  Substitute:"",
-  SpecialInstructions:"",
-  Quantity:""
+  Name:""
 }
 
 const initialUsers = [];
@@ -46,6 +49,7 @@ const App = () => {
     .then((res)=>{
       setUsers([res.data,...users]);
       setFormValues(initialFormValues);
+      console.log(res.data);
     })
     .catch((err)=>{
       console.log(err);
@@ -81,11 +85,18 @@ const App = () => {
     const newUser = {
       Name:formValues.Name.trim(),
       Size:formValues.Size.trim(),
-      Sauce:formValues.Sauce,
-      Toppings:formValues.Toppings,
-      Substitute:formValues.Substitute,
-      SpecialInstructions:formValues.SpecialInstructions.trim(),
-      Quantity:formValues.Quantity,
+      // OriginalRed:formValues.OriginalRed,
+      // GarlicRanch:formValues.GarlicRanch,
+      // BBQ:formValues.BBQ,
+      // SpinachAlfredo:formValues.SpinachAlfredo,
+      // Pepperoni:formValues.Pepperoni,
+      // Sausage:formValues.Sausage,
+      // CanadianBacon:formValues.CanadianBacon,
+      // SpicyItalianSausage:formValues.SpicyItalianSausage,
+      // Toppings:formValues.Toppings,
+      // Substitute:formValues.Substitute,
+      // SpecialInstructions:formValues.SpecialInstructions.trim(),
+      // Quantity:formValues.Quantity,
     };
 
     postNewUser(newUser);
@@ -109,27 +120,38 @@ useEffect(()=>{
         <nav>
           <h1 className='store-header'>Lambda Eats!</h1>
           <div className="nav-links">
-            <Link to="/">Home</Link>
-            <Link to="/help">Help</Link>
+            <Link to="/">Home</Link>  
+
+            <Link to="/order">Order</Link>
           </div>
         </nav>
         <Switch>
-          <Route path="/help">
-            <Help/>
-          </Route>
-
-          <Route path="/">
-            <Home/>
-          </Route>
-        </Switch>
-
-        <Form
+          <Route path="/order">
+          <Form
           values={formValues}
           change={inputChange}
           submit={formSubmit}
           disabled={disabled}
           errors={formErrors}
         />
+          </Route>
+
+          <Route exact path="/">
+            <Home/>
+          </Route>
+        </Switch>
+        
+        {/* <Form
+          values={formValues}
+          change={inputChange}
+          submit={formSubmit}
+          disabled={disabled}
+          errors={formErrors}
+        /> */}
+
+        {users.map((user)=>{
+          return <User key={user.Name} details={user}/>;
+        })}
       </div>
     
   );
